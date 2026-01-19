@@ -236,6 +236,7 @@ ctx.addEventListener("mouseup", (event) => {
 	if (mousex !== false && mousey !== false) {
 		let muki = false
 		if (mousex === event.offsetX && mousey === event.offsetY) {
+			en = 50
 			console.log(Math.floor(Math.random()*800)+200,"onazi")
 		} else if ( Math.abs(event.offsetX - mousex) * Math.tan(Math.PI * 3 / 8) < Math.abs(event.offsetY - mousey) ) {
 			if (event.offsetY < mousey) {
@@ -384,4 +385,5 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
 
