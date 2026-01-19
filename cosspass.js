@@ -1,6 +1,6 @@
 
-document.querySelector("#canvas").style.top = "100px"
-document.querySelector("#canvas").style.left = "100px"
+document.querySelector("#canvas").style.top = "0px"
+document.querySelector("#canvas").style.left = "0px"
 document.querySelector("#canvas").width = 500
 document.querySelector("#canvas").height = 500
 
@@ -384,3 +384,4 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
