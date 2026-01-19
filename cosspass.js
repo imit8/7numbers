@@ -80,7 +80,7 @@ canvas[2].fillRect(0, 0, 500, 500);
 canvas[3].fillStyle = "#bbb"
 canvas[3].fillRect(0, 0, 500, 500);
 canvas[3].fillStyle = "#bbb"*/
-let en = false
+let en = 50//false
 /*canvas[0].drawImage(kakukazu[0],0,0, 100, 100);
 canvas[3].fillRect(250-25, 250-en-25, 50, 50);
 canvas[3].fillRect(250+(en/Math.sqrt(2))-25, 250-(en/Math.sqrt(2))-25, 50, 50);
@@ -387,6 +387,7 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
 
 
 
