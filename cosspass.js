@@ -229,8 +229,10 @@ canvas2.fillStyle = "#bbb"
 let mousex = false
 let mousey = false
 ctx.addEventListener("mousedown", (event) => {
-	mousex = event.offsetX
-	mousey = event.offsetY
+	//mousex = event.offsetX
+	//mousey = event.offsetY
+	mousex = 250
+	mousey = 250
 });
 ctx.addEventListener("mouseup", (event) => {
 	if (mousex !== false && mousey !== false) {
@@ -385,6 +387,7 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
 
 
 
