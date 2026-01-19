@@ -80,7 +80,7 @@ canvas[2].fillRect(0, 0, 500, 500);
 canvas[3].fillStyle = "#bbb"
 canvas[3].fillRect(0, 0, 500, 500);
 canvas[3].fillStyle = "#bbb"*/
-let en = 50//false
+let en = false
 /*canvas[0].drawImage(kakukazu[0],0,0, 100, 100);
 canvas[3].fillRect(250-25, 250-en-25, 50, 50);
 canvas[3].fillRect(250+(en/Math.sqrt(2))-25, 250-(en/Math.sqrt(2))-25, 50, 50);
@@ -114,6 +114,8 @@ let teki = [[-250,0,true],[-550,-50,true],[-100,100,true],[-450,50,true],[350,-5
 let zibun = [0,0,false]
 let idou = [-100,0,50,50]
 let idoucount = 50
+let time = [0,0]
+let score = 0
 
 
 tick()
@@ -137,11 +139,11 @@ function tick() {
 	} else {
 		if (zibun[0] > teki[0][0]) {
 			if (zibun[2] === false) {
-				canvas.drawImage(sugata[0], 175, 175, 150, 150);
+				canvas.drawImage(sugata[1], 175, 175, 150, 150);
 			}
 		} else {
 			if (zibun[2] === false) {
-				flipHorizontally(sugata[0], 175, 175, 150, 150);
+				flipHorizontally(sugata[1], 175, 175, 150, 150);
 			}
 		}
 	}
@@ -157,6 +159,9 @@ function tick() {
 		idou[2]--
 		if (zibun[0] > teki[0][0]) {
 			if (idou[2] <= 0) {
+				if (en === false) {
+					en = 50
+				}
 				zibun[0] = teki[0][0] + 150
 				zibun[1] = teki[0][1]
 				if (Math.floor(Math.random()*7) >= 5) {
@@ -201,6 +206,27 @@ function tick() {
 			}
 		}
 	} else if (teki[0][2] !== false) {
+		time[0] += 1
+		time[1] += 1
+		if (time[1] >= 100) {
+			teki.push([teki[0][0],teki[0][1],false])
+			teki.splice(0,1);
+			if (Math.abs(zibun[0] - teki[0][0]) < 150) {
+				if (zibun[0] > teki[0][0]) {
+					idou[0] = teki[0][0] - 150 - zibun[0]
+				} else {
+					idou[0] = teki[0][0] + 150 - zibun[0]
+				}
+			} else {
+				if (zibun[0] > teki[0][0]) {
+					idou[0] = teki[0][0] + 150 - zibun[0]
+				} else {
+					idou[0] = teki[0][0] - 150 - zibun[0]
+				}
+			}
+			idou[1] = teki[0][1] - zibun[1]
+			idou[2] = 50
+		}
 		canvas.drawImage(kakukazu2[String(teki[0][2])[0]], 175+55-20 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
 		canvas.drawImage(kakukazu2[String(teki[0][2])[1]], 175+55 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
 		canvas.drawImage(kakukazu2[String(teki[0][2])[2]], 175+55+20 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
@@ -273,6 +299,7 @@ ctx.addEventListener("mouseup", (event) => {
 		if (muki !== false) { 
 			if (muki === teki[0][2]%7) {
 				console.log("seikai")
+				score += 1
 				teki.push([teki[0][0],teki[0][1],false])
 				teki.splice(0,1);
 				if (Math.abs(zibun[0] - teki[0][0]) < 150) {
@@ -290,6 +317,16 @@ ctx.addEventListener("mouseup", (event) => {
 				}
 				idou[1] = teki[0][1] - zibun[1]
 				idou[2] = 50
+				if (teki[0][2] === false) {
+					console.log("score",time,score)
+					if (score > 9) {
+						canvas.drawImage(kakukazu2[String(scre)[0]], 250-60, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 180, 40, 40);
+					}
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 180, 40, 40);
+				}
 				/*if (Math.floor(Math.random()*7) >= 5) {
 					kazu = Math.floor(Math.random()*200)+800
 				} else {
@@ -387,6 +424,7 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
 
 
 
