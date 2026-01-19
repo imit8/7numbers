@@ -208,6 +208,11 @@ function tick() {
 	} else if (teki[0][2] !== false) {
 		time[0] += 1
 		time[1] += 1
+		if (zibun[0] > teki[0][0]) {
+			teki[0][0] -= 1
+		} else {
+			teki[0][0] += 1
+		}
 		if (time[1] < 10) {
 			canvas.drawImage(kakukazu2[time[1]], 460, 460, 40, 40);
 		} else if (time[1] < 100) {
@@ -218,7 +223,7 @@ function tick() {
 			canvas.drawImage(kakukazu2[String(time[1])[1]], 440, 460, 40, 40);
 			canvas.drawImage(kakukazu2[String(time[1])[2]], 460, 460, 40, 40);
 		}
-		if (time[1] >= 200) {
+		if (time[1] >= 500) {
 			time[1] = 0
 			teki.push([teki[0][0],teki[0][1],false])
 			teki.splice(0,1);
@@ -436,6 +441,7 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
 
 
 
