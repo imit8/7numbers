@@ -210,9 +210,9 @@ function tick() {
 		time[1] += 1
 		if (time[1]%2 === 0) {
 			if (zibun[0] > teki[0][0]) {
-				zibun[0] += 1
-			} else {
 				zibun[0] -= 1
+			} else {
+				zibun[0] += 1
 			}
 		}
 		if (time[1] < 10) {
@@ -457,6 +457,7 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
 
 
 
