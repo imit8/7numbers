@@ -1,23 +1,9 @@
 
+
 document.querySelector("#canvas").style.top = "0px"
 document.querySelector("#canvas").style.left = "0px"
 document.querySelector("#canvas").width = 500
 document.querySelector("#canvas").height = 500
-
-document.querySelector("#sentocanvas2").style.top = "0px"
-document.querySelector("#sentocanvas2").style.left = "400px"
-document.querySelector("#sentocanvas2").width = 200
-document.querySelector("#sentocanvas2").height = 100
-
-document.querySelector("#iconcanvas").style.top = "0px"
-document.querySelector("#iconcanvas").style.left = "200px"
-document.querySelector("#iconcanvas").width = 100
-document.querySelector("#iconcanvas").height = 100
-
-document.querySelector("#iconcanvas2").style.top = "500px"
-document.querySelector("#iconcanvas2").style.left = "600px"
-document.querySelector("#iconcanvas2").width = 100
-document.querySelector("#iconcanvas2").height = 100
 
 const ctx = document.querySelector("#canvas")
 //const ctx = document.getElementsByClassName('canvas');
@@ -26,14 +12,6 @@ let canvas = document.querySelector("#canvas").getContext('2d')
 	canvas.unshift(ctx[i].getContext('2d'))
 }*/
 
-const icanvas = document.querySelector("#iconcanvas").getContext('2d')
-const icanvas2 = document.querySelector("#iconcanvas2").getContext('2d')
-
-const canvas2 = document.querySelector("#sentocanvas2").getContext('2d')
-const ctx2 = document.querySelector("#sentocanvas2")
-
-let gamen = [canvas,canvas2]
-let wazagamen = [icanvas,icanvas2]
 
 let kazu = Math.floor(Math.random()*800)+200
 console.log(kazu)
@@ -120,40 +98,41 @@ let score = 0
 
 tick()
 function tick() {
-	requestAnimationFrame(tick)
-	canvas.clearRect(0, 0, 500, 500)
-	canvas.fillStyle = "#96dd8c"//"#ddd"
-	canvas.fillRect(0, 0, 500, 500);
-	canvas.drawImage(haikei, -1000 - zibun[0], -1000 + 250 - zibun[1], 2000, 2000);
-	for (var i = 0; i < teki.length; i++) {
-		if (zibun[1] > teki[i][1]) {
-			canvas.drawImage(tekisugata[0], 175 + teki[i][0] - zibun[0], 175 + teki[i][1] - zibun[1], 150, 150);
-		}
-	}
-	if (teki[0][2] === true) {
-		if (idou[0] < 0) {
-			canvas.drawImage(sugata[1], 175, 175, 150, 150);
-		} else {
-			flipHorizontally(sugata[1], 175, 175, 150, 150);
-		}
-	} else {
-		if (zibun[0] > teki[0][0]) {
-			if (zibun[2] === false) {
-				canvas.drawImage(sugata[1], 175, 175, 150, 150);
+	if (teki[0][2] !== false) {
+		requestAnimationFrame(tick)
+		canvas.clearRect(0, 0, 500, 500)
+		canvas.fillStyle = "#96dd8c"//"#ddd"
+		canvas.fillRect(0, 0, 500, 500);
+		canvas.drawImage(haikei, -1250 - zibun[0], -1250 + 250 - zibun[1], 2500, 2500);
+		for (var i = 0; i < teki.length; i++) {
+			if (zibun[1] > teki[i][1]) {
+				canvas.drawImage(tekisugata[0], 175 + teki[i][0] - zibun[0], 175 + teki[i][1] - zibun[1], 150, 150);
 			}
-		} else {
-			if (zibun[2] === false) {
+		}
+		if (teki[0][2] === true) {
+			if (idou[0] < 0) {
+				canvas.drawImage(sugata[1], 175, 175, 150, 150);
+			} else {
 				flipHorizontally(sugata[1], 175, 175, 150, 150);
 			}
+		} else {
+			if (zibun[0] > teki[0][0]) {
+				if (zibun[2] === false) {
+					canvas.drawImage(sugata[1], 175, 175, 150, 150);
+				}
+			} else {
+				if (zibun[2] === false) {
+					flipHorizontally(sugata[1], 175, 175, 150, 150);
+				}
+			}
 		}
-	}
-	for (var i = 0; i < teki.length; i++) {
-		if (zibun[1] <= teki[i][1]) {
-			canvas.drawImage(tekisugata[0], 175 + teki[i][0] - zibun[0], 175 + teki[i][1] - zibun[1], 150, 150);
+		for (var i = 0; i < teki.length; i++) {
+			if (zibun[1] <= teki[i][1]) {
+				canvas.drawImage(tekisugata[0], 175 + teki[i][0] - zibun[0], 175 + teki[i][1] - zibun[1], 150, 150);
+			}
 		}
 	}
 	if (teki[0][2] === true) {
-		console.log(",",zibun[0],idou[0]/10)
 		zibun[0] += idou[0]/idou[3]
 		zibun[1] += idou[1]/idou[3]
 		idou[2]--
@@ -211,7 +190,7 @@ function tick() {
 		if (time[1]%2 === 0) {
 			if (zibun[0] > teki[0][0]) {
 				zibun[0] -= 1
-			} else {
+			} else if (zibun[0] < teki[0][0]) {
 				zibun[0] += 1
 			}
 		}
@@ -225,7 +204,10 @@ function tick() {
 			canvas.drawImage(kakukazu2[String(time[1])[1]], 440, 460, 40, 40);
 			canvas.drawImage(kakukazu2[String(time[1])[2]], 460, 460, 40, 40);
 		}
-		if (time[1] >= 500) {
+		canvas.drawImage(kakukazu2[String(teki[0][2])[0]], 175+55-20 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
+		canvas.drawImage(kakukazu2[String(teki[0][2])[1]], 175+55 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
+		canvas.drawImage(kakukazu2[String(teki[0][2])[2]], 175+55+20 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
+		if (time[1] >= 250) {
 			time[1] = 0
 			teki.push([teki[0][0],teki[0][1],false])
 			teki.splice(0,1);
@@ -244,10 +226,35 @@ function tick() {
 			}
 			idou[1] = teki[0][1] - zibun[1]
 			idou[2] = 50
+			if (teki[0][2] === false) {
+				console.log("score",time,score)
+				canvas.clearRect(0, 0, 500, 500)
+				canvas.fillStyle = "#96dd8c"//"#ddd"
+				canvas.fillRect(0, 0, 500, 500);
+				canvas.drawImage(haikei, -1250 - zibun[0], -1250 + 250 - zibun[1], 2500, 2500);
+				if (score > 9) {
+					canvas.drawImage(kakukazu2[String(scre)[0]], 250-60, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 180, 40, 40);
+				} else {
+					canvas.drawImage(kakukazu2[String(score)[0]], 250-40, 180, 40, 40);
+				}
+				if (time[0] < 10) {
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250+60, 180, 40, 40);
+				} else if (time[0] < 100) {
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250+40, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+60, 180, 40, 40);
+				} else if (time[0] < 1000) {
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250+20, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+40, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+60, 180, 40, 40);
+				} else {
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[3]], 250+60, 180, 40, 40);
+				}
+			}
 		}
-		canvas.drawImage(kakukazu2[String(teki[0][2])[0]], 175+55-20 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
-		canvas.drawImage(kakukazu2[String(teki[0][2])[1]], 175+55 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
-		canvas.drawImage(kakukazu2[String(teki[0][2])[2]], 175+55+20 + teki[0][0] - zibun[0], 175 + teki[0][1] - zibun[1], 40, 40);
 	}
 	
 	
@@ -264,7 +271,6 @@ function tick() {
 		canvas.drawImage(kakukazu[6],250-en-25, 250-25, 50, 50);
 	}
 }
-canvas2.fillStyle = "#bbb"
 //canvas2.fillRect(0, 0, 500, 500);
 /*ctx[0].addEventListener("click", (event) => {
 	console.log(Math.floor(Math.random()*800)+200)
@@ -314,11 +320,14 @@ ctx.addEventListener("mouseup", (event) => {
 				muki = 5
 			}
 		}
-		if (muki !== false) { 
-			if (muki === teki[0][2]%7) {
+		if (muki !== false && teki[0][2] !== true && teki[0][2] !== false) {
 				time[1] = 0
 				console.log("seikai")
+			if (muki === teki[0][2]%7) {
 				score += 1
+			} else {
+				console.log("hazure",String(kazu%7),muki)
+			}
 				teki.push([teki[0][0],teki[0][1],false])
 				teki.splice(0,1);
 				if (Math.abs(zibun[0] - teki[0][0]) < 150) {
@@ -338,6 +347,10 @@ ctx.addEventListener("mouseup", (event) => {
 				idou[2] = 50
 				if (teki[0][2] === false) {
 					console.log("score",time,score)
+					canvas.clearRect(0, 0, 500, 500)
+					canvas.fillStyle = "#96dd8c"//"#ddd"
+					canvas.fillRect(0, 0, 500, 500);
+					canvas.drawImage(haikei, -1250 - zibun[0], -1250 + 250 - zibun[1], 2500, 2500);
 					if (score > 9) {
 						canvas.drawImage(kakukazu2[String(scre)[0]], 250-60, 180, 40, 40);
 						canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 180, 40, 40);
@@ -379,10 +392,7 @@ ctx.addEventListener("mouseup", (event) => {
 
 				}*/
 				console.log(kazu)
-			} else {
-				console.log("hazure",String(kazu%7))
-				
-			}
+			
 		}
 		/* else if (mousex > event.offsetX && mousey > event.offsetY) {
 			if ( Math.abs(event.offsetX - mousex) < Math.abs(event.offsetY - mousey) ) {
