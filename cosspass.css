@@ -13,6 +13,12 @@ body{
 .canvas{
   position: absolute;
 }
+#ll{
+  position: absolute;
+}
+#mm{
+  position: absolute;
+}
 #hontai {
   position: absolute;
   background: url('zibun migi migi.svg');
