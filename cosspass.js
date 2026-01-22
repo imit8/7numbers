@@ -246,31 +246,31 @@ function tick() {
 				canvas.fillRect(0, 0, 500, 500);
 				canvas.drawImage(haikei, -1250 - zibun[0], -1250 + 250 - zibun[1], 2500, 2500);
 				if (score > 9) {
-					canvas.drawImage(kakukazu2[String(score)[0]], 250-60, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(score)[0]], 250-60, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 230, 40, 40);
 				} else {
-					canvas.drawImage(kakukazu2[String(score)[0]], 250-40, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(score)[0]], 250-40, 230, 40, 40);
 				}
 				if (time[0] < 10) {
-					canvas.drawImage(kakukazu2[String(time[0])[0]], 250+60, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
 				} else if (time[0] < 100) {
-					canvas.drawImage(kakukazu2[String(time[0])[0]], 250+40, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+60, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 230, 40, 40);
 				} else if (time[0] < 1000) {
-					canvas.drawImage(kakukazu2[String(time[0])[0]], 250+20, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+40, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+60, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 230, 40, 40);
 				} else {
-					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 180, 40, 40);
-					canvas.drawImage(kakukazu2[String(time[0])[3]], 250+60, 180, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 230, 40, 40);
+					canvas.drawImage(kakukazu2[String(time[0])[3]], 250+60, 230, 40, 40);
 				}
 			}
 		}
 	}
 	
-		if (en !== false) {
+		if (en !== false && teki[0][2] !== false) {
 			if (en < 400 / 2) {
 				en += 5
 			}
@@ -366,25 +366,25 @@ ctx.addEventListener("mouseup", (event) => {
 					canvas.fillRect(0, 0, 500, 500);
 					canvas.drawImage(haikei, -1250 - zibun[0], -1250 + 250 - zibun[1], 2500, 2500);
 					if (score > 9) {
-						canvas.drawImage(kakukazu2[String(score)[0]], 250-60, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(score)[0]], 250-60, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(score)[1]], 250-40, 230, 40, 40);
 					} else {
-						canvas.drawImage(kakukazu2[String(score)[0]], 250-40, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(score)[0]], 250-40, 230, 40, 40);
 					}
 					if (time[0] < 10) {
-						canvas.drawImage(kakukazu2[String(time[0])[0]], 250+60, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
 					} else if (time[0] < 100) {
-						canvas.drawImage(kakukazu2[String(time[0])[0]], 250+40, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(time[0])[1]], 250+60, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 230, 40, 40);
 					} else if (time[0] < 1000) {
-						canvas.drawImage(kakukazu2[String(time[0])[0]], 250+20, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(time[0])[1]], 250+40, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(time[0])[2]], 250+60, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 230, 40, 40);
 					} else {
-						canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 180, 40, 40);
-						canvas.drawImage(kakukazu2[String(time[0])[3]], 250+60, 180, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[0]], 250, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[1]], 250+20, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[2]], 250+40, 230, 40, 40);
+						canvas.drawImage(kakukazu2[String(time[0])[3]], 250+60, 230, 40, 40);
 					}
 				}
 				/*if (Math.floor(Math.random()*7) >= 5) {
@@ -485,3 +485,17 @@ function flipHorizontally(img,x,y,width=null,height=null) {
   // always clean up -- reset transformations to default
   canvas.setTransform(1,0,0,1,0,0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
